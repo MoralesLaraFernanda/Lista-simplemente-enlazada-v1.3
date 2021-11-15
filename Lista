@@ -1,0 +1,149 @@
+import java.util.Scanner;
+
+public class ProyectosED {
+
+        Scanner scaner = new Scanner(System.in);
+    int num = 0, prim = 0, fin = 0;
+    String reset = "\u001B[0m";
+    char [][] indiceAleatorio = new char [8][8];
+    char [] letra = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+    char [] numero = {'1','2','3','4','5','6','7','8','9','0'};
+    char [] caracter = {'@','#','$','&','!','/','=','+','-','*'};
+    Nodo top = null; 
+    Nodo sig = null;
+    
+    
+    public static void main(String[] args) {
+        Scanner scaner = new Scanner(System.in);
+        ProyectosED nodos = new ProyectosED(); 
+        int Opcion;
+         do {
+            System.out.print("1 Agregar nodo.\n"
+                    + "2 Mostrar lista.\n"
+                    + "3 Eliminar \n"
+                    + "4 Generar palabra \n"
+                    + "5 Salir.\n");
+            switch (Opcion = scaner.nextInt()) {
+                case 1: 
+                    nodos.AgregarNodo(); 
+                    break;
+                case 2: 
+                    nodos.MostrarLista();
+                    break;
+                case 3:
+                    nodos.Eliminar();
+                case 4:
+                    nodos.Palabra ();
+            }
+        } while (Opcion != 5);
+    }
+    static class Nodo {
+        String name;
+        Nodo next;
+    }
+    public void AgregarNodo() { 
+        if (top == null) { 
+            top = new Nodo(); 
+            top.name =  "A"; 
+            top.next = null;  
+            num++;
+            fin++;
+            System.out.println("Nodo agregado");
+        } else if (num == 1) { 
+            Nodo sig; 
+            sig = new Nodo(); 
+            sig.name = "B"; 
+            sig.next = top; 
+            top = sig; 
+            num++; 
+            fin++; 
+            System.out.println("Nodo agregado");
+        } else if (num == 2) {
+            Nodo sig; 
+            sig = new Nodo();  
+            sig.name = "BB"; 
+            sig.next = top; 
+            top = sig; 
+            num++; 
+            fin++; 
+            System.out.println("Nodo agregado");
+        } else if (num == 3) {
+            Nodo temp; 
+            temp = new Nodo(); 
+            temp.name = "BBB";
+            temp.next = top;
+            top = temp; 
+            num = prim; 
+            fin++; 
+            System.out.println("Nodo agregado");
+        } else if (num == 0) { 
+            Nodo sig; 
+            sig = new Nodo();
+            sig.name = "A"; 
+            sig.next = top; 
+            top = sig; 
+            num++; 
+            fin++; 
+            System.out.println("Nodo agregado");
+        }
+    }
+
+    public static void mostrar(String name, Nodo sig) { 
+        System.out.println(name); 
+        while (sig != null) { 
+            System.out.print(sig.name + " "); 
+            sig = sig.next;
+        }
+    }
+
+    public void MostrarLista() { 
+        if (top == null) { 
+            System.out.print("La lista esta vacia");
+        } else {
+            sig=top; 
+            for (int i = fin; i >= 1; i--) { 
+                mostrar("\n" + "caso " + i, sig); 
+                System.out.println("");
+                sig = sig.next;
+            }
+            System.out.print("Total de nodos: " + fin); 
+        }
+        System.out.println("");
+    }
+    
+    public void Eliminar(){
+        if (top == null) {
+            System.out.print("La lista esta vacia");
+        }else{
+        sig = top;
+        System.out.print("\n" + reset +"El nodo" + sig.name + top.name + reset + " se elimino.\n");
+        top = top.next;
+        }
+    }
+    
+    public void Palabra() {
+        if (top == null) {
+            System.out.print("La lista esta vacia");
+        }else{
+            sig = top;
+        for (int i = 0; i < 1; i++) {
+            for (int j = 0; j < 5; j++)
+        indiceAleatorio[i][j] = letra[(int) (Math.random()*26) ];
+    }           
+        for (int i = 0; i < 6; i++) {
+            indiceAleatorio[i][i] = numero [i];
+            indiceAleatorio[i][i] = numero[(int) (Math.random()*6) ];
+            indiceAleatorio[i][6] = caracter [i];
+            indiceAleatorio[i][6] =  caracter[(int) (Math.random()*6) ];
+        }
+        for (int i = 0; i < 1; i++){
+            for (int j = 0; j < 8; j++)
+                System.out.print(indiceAleatorio[i][j]);
+            System.out.println();
+        }
+        }
+    }
+}
+
+    
+
